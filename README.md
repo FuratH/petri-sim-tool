@@ -1,7 +1,7 @@
 
 <h2 align="center">:tada: PetriSim [Parametrization of Business Process Simulation] :tada:</h2>
 
-![image](doc/screenshot.png)
+![image](doc/scenarioSceenshot.png)
 
 ![CI](https://github.com/PetriSim/petri-sim-tool/actions/workflows/CI.yml/badge.svg)
 
