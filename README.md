@@ -2,7 +2,6 @@
 <h2 align="center">:tada: PetriSim [Parametrization of Business Process Simulation] :tada:</h2>
 
 ![image](doc/scenarioSceenshot.png)
-
 ![CI](https://github.com/PetriSim/petri-sim-tool/actions/workflows/CI.yml/badge.svg)
 
 
@@ -118,7 +117,7 @@ Simply click on "start new project" and then "start parameterization" to begin.
 3. Clone git repository
 
 ```console
-git clone https://github.com/FuratH/petri-sim-tool.git
+git clone https://github.com/FuratH/petri-sim-tool.git 
 ```
 
 4. Go to the project directory
