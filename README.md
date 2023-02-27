@@ -86,7 +86,7 @@ In order to run out tool with all related components, we recommend to run it by 
 
 2. Clone the repository
 ```console
-git clone https://github.com/PetriSim/petri-sim-tool.git
+git clone https://github.com/FuratH/petri-sim-tool.git
 ```
 
 3. Navigate into the project directory
@@ -118,7 +118,7 @@ Simply click on "start new project" and then "start parameterization" to begin.
 3. Clone git repository
 
 ```console
-git clone https://github.com/PetriSim/petri-sim-tool.git
+git clone https://github.com/FuratH/petri-sim-tool.git
 ```
 
 4. Go to the project directory
@@ -156,23 +156,23 @@ npm start
 1. Download the frontend:
 
 ```console
-docker pull ghcr.io/petrisim/frontend:latest
+docker pull ghcr.io/furath/frontend:latest
 ```
 
 2. Download the other tools / backend:
 
 ```console
-docker pull ghcr.io/petrisim/backend:latest
+docker pull ghcr.io/furath/backend:latest
 ```
 
 3. Start the frontend:
 ```console
-docker run -dp 3000:3000 ghcr.io/petrisim/frontend:latest
+docker run -dp 3000:3000 ghcr.io/furath/frontend:latest
 ```
 
 4. Start the backend: 
 ```console
-docker run -dp 8000:8000 ghcr.io/petrisim/backend:latest
+docker run -dp 8000:8000 ghcr.io/furath/backend:latest
 ```
 
 #### Problems related to running the program from the source
