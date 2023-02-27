@@ -8,11 +8,8 @@ import EditorSidebar from './components/EditorSidebar/EditorSidebar';
 import StartView from './components/StartView/StartView';
 import BpmnViewSelector from './components/ModelbasedParameters/BpmnViewSelector';
 import ScenarioPage from './components/ScenarioParameters/ScenarioPage';
-import OverviewPage from './components/Overview/OverviewPage';
-import OnlyDifferencesPage from './components/Comparison/OnlyDifferencesPage'
 import ModelbasedParametersTable from './components/ModelbasedParameters/ModelbasedParametersTable';
 import SimulationPage from './components/Simulation/SimulationPage';
-import ComparePage from "./components/Comparison/ComparePage";
 import TimetableOverview from './components/ResourceParameters/TimeTable/TimetableOverview';
 import ResourceOverview from './components/ResourceParameters/Resources/ResourceOverview';
 import { Routes, Route, Navigate } from 'react-router-dom';
@@ -24,7 +21,6 @@ function App() {
   const [projectStarted, setStarted] = useState(sessionStorage.getItem('st') || "false") // checks if the starting flaf is stet in the session storage to display the dashboard or otherwise the startpage
 
 
-  const [parsed, setParsed] = useState(true) // to be removed
 
   const [data, setDataInternal] = useState([]) // method is used to save data from the discoverytool
 
@@ -53,8 +49,7 @@ function App() {
 
 
   const [scenariosCompare, setScenariosCompare] = useState("")
-  const [notSameScenario, setNotSameScenario] = useState("")
-  const [resourceCompared, setResourceCompared] = useState("")
+
 
 
 
@@ -200,6 +195,7 @@ useEffect(() => {
               data={data} 
               setScenario={setScenario}
               toasting={toasting}
+              setName={setName}
               />
           </Box>
 
@@ -235,21 +231,18 @@ useEffect(() => {
           </Modal>
 
             {/*  These routes define which components are loaded into the center of the page for each path and pass the needed props*/}
-            <Routes>
-              <Route path="/overview" element={<OverviewPage path="/overview" parsed={parsed} getData={getData} setCurrent={setCurrent} current={current} setObject={setObject} currentBpmn={currentBpmn}  data={data} currentScenario={currentScenario} scenariosCompare={scenariosCompare} setScenariosCompare={setScenariosCompare}/>} />
+            <Routes>           
               <Route path="/resource" element={<ResourceOverview path="/resource" setData={setData} getData={getData} current={current} setCurrent={setCurrent} setObject={setObject} currentBpmn={currentBpmn}  data={data} setScenario={setScenario} currentScenario={currentScenario} currentResource={currentResource} setResource={setResource} currentRole={currentRole} setRole={setRole} currentTimetable={currentTimetable} setTimetable={setTimetable} />} />
               <Route path="/resource/overview" element={<ResourceOverview path="/resource" setData={setData} getData={getData} current={current} setCurrent={setCurrent} setObject={setObject} currentBpmn={currentBpmn}  data={data} setScenario={setScenario} currentScenario={currentScenario} currentResource={currentResource} setResource={setResource} currentRole={currentRole} setRole={setRole} currentTimetable={currentTimetable} setTimetable={setTimetable} />} />
               <Route path="/resource/timetable" element={<TimetableOverview  path="/resource" setData={setData} getData={getData} current={current} setCurrent={setCurrent} setObject={setObject} currentBpmn={currentBpmn}  data={data} setScenario={setScenario} currentScenario={currentScenario} currentResource={currentResource} setResource={setResource} currentRole={currentRole} setRole={setRole} currentTimetable={currentTimetable} setTimetable={setTimetable}/>} />
 
               <Route path="/scenario" element={<ScenarioPage setData={setData} getData={getData} current={current} setCurrent={setCurrent} setObject={setObject} currentBpmn={currentBpmn}  data={data} setScenario={setScenario} currentScenario={currentScenario} scenariosCompare={scenariosCompare} setScenariosCompare={setScenariosCompare}  currentResource={currentResource} setResource={setResource} currentRole={currentRole} setRole={setRole} currentTimetable={currentTimetable} setTimetable={setTimetable} selectedScenario={selectedScenario} setSelectedScenario={setSelectedScenario}/>} />
-              <Route path="/overview/compare" element={<ComparePage path="/overview" getData={getData} setCurrent={setCurrent} current={current} setObject={setObject} currentBpmn={currentBpmn}  data={data} currentScenario={currentScenario} scenariosCompare={scenariosCompare} setScenariosCompare={setScenariosCompare} notSameScenario={notSameScenario} setNotSameScenario={setNotSameScenario} resourceCompared={resourceCompared} setResourceCompared={setResourceCompared}/>}  />
-              <Route path="/overview/compare/differences" element={<OnlyDifferencesPage path="/overview" getData={getData} setCurrent={setCurrent} current={current} setObject={setObject} currentBpmn={currentBpmn}  notSameScenario={notSameScenario} setNotSameScenario={setNotSameScenario} data={data} currentScenario={currentScenario} scenariosCompare={scenariosCompare} setScenariosCompare={setScenariosCompare} resourceCompared={resourceCompared} setResourceCompared={setResourceCompared}/>} />
-
 
               <Route path="/modelbased" element={ <BpmnViewSelector zIndex={-5} setCurrent={setCurrent} current={current} setObject={setObject} currentBpmn={currentBpmn}  data={data} currentScenario={currentScenario} />} />
-              <Route path="/modelbased/tableview" element={ <ModelbasedParametersTable parsed={parsed} setData={setData} getData={getData} current={current} setCurrent={setCurrent} setObject={setObject} currentBpmn={currentBpmn}   data={data} currentScenario={currentScenario} />} />
+              <Route path="/modelbased/tableview" element={ <ModelbasedParametersTable setData={setData} getData={getData} current={current} setCurrent={setCurrent} setObject={setObject} currentBpmn={currentBpmn}   data={data} currentScenario={currentScenario} />} />
+              
               <Route path="/simulation" element={<SimulationPage path="/simulation" getData={getData} setCurrent={setCurrent} current={current} setObject={setObject} currentBpmn={currentBpmn}  data={data} currentScenario={currentScenario} toasting={toasting} />} />
-              <Route path='*' element={<Navigate to='/overview' />} />
+              <Route path='*' element={<Navigate to='/scenario' />} />
             </Routes>
          </Container>
 
@@ -259,10 +252,7 @@ useEffect(() => {
             <Route path="/resource" element={<EditorSidebar  setCurrent={setCurrent} setData={setData} getData={getData} current={current} currentBpmn={currentBpmn} currentResource={currentResource} setResource={setResource} selectedObject={currentObject}  currentScenario={currentScenario} setScenario={setScenario} currentRole={currentRole} setRole={setRole} currentTimetable={currentTimetable} setTimetable={setTimetable} />} />
               <Route path="/resource/overview" element={<EditorSidebar  setCurrent={setCurrent} setData={setData} getData={getData} current={current} currentBpmn={currentBpmn} currentResource={currentResource} setResource={setResource} selectedObject={currentObject}  currentScenario={currentScenario} setScenario={setScenario} currentRole={currentRole} setRole={setRole} currentTimetable={currentTimetable} setTimetable={setTimetable}/>} />
               <Route path="/resource/timetable" element={<EditorSidebar  setCurrent={setCurrent} setData={setData} getData={getData} current={current} currentBpmn={currentBpmn} currentResource={currentResource} setResource={setResource} selectedObject={currentObject}  currentScenario={currentScenario} setScenario={setScenario} currentRole={currentRole} setRole={setRole} currentTimetable={currentTimetable} setTimetable={setTimetable}/>} />
-              
               <Route path="/scenario" element={<EditorSidebar  setData={setData} getData={getData} current={current} currentBpmn={currentBpmn} selectedObject={currentObject}  currentScenario={currentScenario} setScenario={setScenario}  setCurrent={setCurrent} selectedScenario={selectedScenario} setSelectedScenario={selectedScenario}/> } />
-
-
               <Route path="/modelbased" element={<EditorSidebar  setData={setData} getData={getData} current={current} currentBpmn={currentBpmn} selectedObject={currentObject}  currentScenario={currentScenario}  setObject={setObject} />} />
 
             </Routes>

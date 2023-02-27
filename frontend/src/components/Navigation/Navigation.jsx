@@ -11,11 +11,9 @@ import NavigationItem from './NavigationItem';
 import {
     FiStar,
     FiSettings,
-    FiFileText,
-    FiTrash2,
+    FiPower,
     FiDownload,
     FiPlay,
-    FiEye,
     FiUser
   } from 'react-icons/fi';
 
@@ -23,13 +21,12 @@ import {
   import BPMNSwitcher from './BPMNSwitcher';
   import ScenarioSwitcher from './ScenarioSwitcher';
 
-  function Navigation({setCurrent, data, bpmns,setScenario, currentScenario, setBpmn, scenarios, current, currentBpmn, setStarted}) {
+  function Navigation({setCurrent, data, bpmns,setScenario, currentScenario, setBpmn, scenarios, current, currentBpmn, setStarted, setName}) {
 
 
     // Define Navigation items that will be displayed at the top of the navigation
 
     const LinkItems = [
-        { name: 'Overview', icon: FiEye, path: '/overview', event: () =>  setCurrent("Overview") },
         { name: 'Scenario Parameters', icon: FiSettings, path: '/scenario', event: () =>  setCurrent("Scenario Parameters") },
         { name: 'Resource Parameters', icon: FiUser, path: '/resource', event: () =>  setCurrent("Resource Parameters") },
         { name: 'Modelbased Parameters', icon: FiStar, path: '/modelbased', event: () =>  setCurrent("Modelbased Parameters") },
@@ -39,8 +36,7 @@ import {
       // Define Navigation items that will be displayed at the bottom of the navigation
      
       const LinkItems2 = [
-        { name: 'Add BPMN', icon: FiFileText, path: '#', event: () => {} },
-        { name: 'Reset parameters', icon: FiTrash2, path: '#', event: () => {} },
+        { name: 'Close project', icon: FiPower, path: '/#', event: () => close() },
         { name: 'Download parameters', icon: FiDownload, path: '/#', event: () => save() },
       ];
 
@@ -55,6 +51,13 @@ import {
         const jsonData = JSON.stringify(data);
         const blob = new Blob([jsonData], { type: "application/json" });
         saveAs(blob, "data.json");
+      }
+
+      const close = () =>{
+        setStarted("false")
+        setName("")
+        sessionStorage.setItem('st', false);
+        sessionStorage.removeItem('currentProject');
       }
       
   return (

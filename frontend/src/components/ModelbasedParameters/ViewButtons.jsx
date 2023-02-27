@@ -5,7 +5,7 @@ import {
   import { Link } from "react-router-dom";
 
 
-function ViewButtons(props){
+function ViewButtons(){
     const [view, setview] = useState(false)
 
         const changeview  = () => {
@@ -31,23 +31,6 @@ function ViewButtons(props){
 
             {view ? 
             <>
-              <Button 
-                bg = 'white'
-                position = 'absolute'
-                bottom = '10px'
-                left = '370px'
-                variant='unstyled' 
-                height= '25px'
-                width = '75px'
-                _hover={{bg: "blackAlpha.100"}}
-                rounded="10" 
-                shadow="md"
-                size='20'
-
-                onClick={changeview}
-              >
-                XML
-              </Button>
               <Button as={Link} to="/modelbased/tableview"
              
                 bg = 'white'
