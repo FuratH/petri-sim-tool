@@ -13,7 +13,7 @@ PetriSim is a parametrization and scenario definition tool for Business Process 
 It can be used as an intermediary between a process discovery tool and a business process simulator.
 The user interface allows manual parameter editing and an integrated API provides smooth use experience between process discovery and simulation.
 
-
+ 
 
 
 ## 📦️ Components
