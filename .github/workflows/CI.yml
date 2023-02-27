@@ -51,6 +51,8 @@ jobs:
     name: Build and publish 
     runs-on: ubuntu-latest
     needs: [test]
+    permissions:
+      packages: write
 
     steps:
     # Log into github registry    
