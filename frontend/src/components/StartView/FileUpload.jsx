@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import {React, useState} from 'react'
 import {Flex,Text, Input, InputGroup, InputRightElement, Box} from '@chakra-ui/react'
 import { FiCheck, FiFile} from 'react-icons/fi';
 
@@ -40,7 +40,7 @@ function FileUpload(props) {
 
     return (
         
-            <Flex width = '90%' flexDir = 'column'>
+            <Flex width = '100%' flexDir = 'column'>
                 
                 <Text fontSize="s" textAlign="start" color="#485152" fontWeight="bold" > {props.title} </Text>
                 <InputGroup width = "100%">

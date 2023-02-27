@@ -18,7 +18,7 @@ function ProgressPage() {
       gap="5"
       w = "100vw"
       h = "100vh"
-      p = "6"
+      p = "md"
     >
     
       <Text fontSize="3xl" textAlign="left" color="H5C5C5C" fontWeight="bold" >PetriSim</Text>

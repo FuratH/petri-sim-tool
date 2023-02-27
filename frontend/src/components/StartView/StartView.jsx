@@ -1,7 +1,7 @@
 import {React, useState} from 'react'
 
 import {
-    Flex, Button, Divider, Text,Select, Box, Heading
+    Flex, Button, Divider, Text,Select, Heading, Alert, AlertIcon
      
   } from '@chakra-ui/react'
 import { FiChevronDown } from 'react-icons/fi';
@@ -82,17 +82,17 @@ function StartView(props) {
       w = "100vw"
       h = "100vh"
       p = "6"
+      overflowY="auto"
     >
-      <gap />
+     
       <Text fontSize="3xl" textAlign="left" color="H5C5C5C" fontWeight="bold" >PetriSim</Text>
       <Divider />
 
-      {startNewProject || startExistingProject ? <></>
-      :
-      <>
-      <gap /><gap /><gap /><gap /><gap />
-      </>
-      }
+      <Alert status='warning' h="20" p="7" round="15" variant='left-accent'>
+        <AlertIcon />
+        <Text>To begin a new project, simply click on "Start New Project" and then select "Start Parameterization". You don't need to upload an eventlog or specify a Simulator or Discovery tool.</Text>
+      </Alert>
+      
       
       <Flex
         backgroundColor="white"
@@ -100,26 +100,27 @@ function StartView(props) {
         flexDir="column"
         gap="50"     
       >
+        
         {startNewProject ? 
         <>
           <Flex
-          boxShadow='sm'
-          rounded = '2xl'
-          backgroundColor="#F0F0F1"
-          alignItems="center"
-          flexDir="column"
-          gap="5"
-          height={400}          
-          width={400} 
+            boxShadow='sm'
+            rounded = 'md'
+            backgroundColor="#F0F0F1"
+            alignItems="center"
+            flexDir="column"
+            gap="5"    
+            width={400} 
+            p="6"
           >
             
-            <gap />
+           
             <Text fontSize="xl" textAlign="left" color="#485152" fontWeight="bold" > Start new project</Text>
-            <gap />
+           
 
-            <FileUpload title = 'Event log:' accept = '.xes' getFile={pushToApp}/>
+            <FileUpload width = '100%' title = 'Event log:' accept = '.xes' getFile={pushToApp}/>
 
-            <Flex width = '90%' flexDir = 'column'>
+            <Flex width = '100%' flexDir = 'column'>
               <Text fontSize="s" textAlign="start" color="#485152" fontWeight="bold" > Select Discovery Tool:</Text>
               <Select placeholder = 'choose discovery tool' width = '100%' color="darkgrey" focusBorderColor='teal' backgroundColor= 'white' icon={<FiChevronDown />}>
                 <option value='Simod'>Simod</option>
@@ -128,7 +129,7 @@ function StartView(props) {
               </Select>
             </Flex>
              
-            <Flex width = '90%' flexDir = 'column'>
+            <Flex width = '100%' flexDir = 'column'>
               <Text fontSize="s" textAlign="start" color="#485152" fontWeight="bold" > Select Simulator:</Text>
               <Select placeholder = 'choose simulator' width = '100%' color="darkgrey" focusBorderColor='teal' backgroundColor= 'white' icon={<FiChevronDown />}>
                 <option value='BIMP'>BIMP</option>
@@ -137,7 +138,7 @@ function StartView(props) {
               </Select>
             </Flex>
          
-            <Button color = 'white' colorScheme='teal' variant='solid' width='90%' onClick={startNewData} >
+            <Button color = 'white' colorScheme='teal' variant='solid' width='100%' onClick={startNewData} >
               Start parametrization
             </Button>
 
@@ -146,12 +147,12 @@ function StartView(props) {
         </> 
         :
           <Button boxShadow='sm'
-          rounded = '2xl'
+          rounded = 'md'
           backgroundColor="#F0F0F1"
           alignItems="center"
           flexDir="column"
           gap="5"
-          height={50}          
+          p="6"  
           width={400} 
           onClick={startNewProjectNow}
           fontSize="xl" textAlign="left" color="RGBA(0, 0, 0, 0.80)" fontWeight="bold">
@@ -162,17 +163,17 @@ function StartView(props) {
         {startExistingProject ? <>
           <Flex
           boxShadow='sm'
-          rounded = '2xl'
+          rounded = 'md'
           backgroundColor="#F0F0F1"
           alignItems="center"
           flexDir="column"
           gap="5"
-          height={addExistingBPMN ? 580 : 400}          
+          p="6"         
           width={400} 
         >
           
    
-          <Text fontSize="xl" textAlign="left" color="RGBA(0, 0, 0, 0.80)" fontWeight="bold" mt="5"> Open existing project from files</Text>
+          <Text fontSize="xl" textAlign="left" color="RGBA(0, 0, 0, 0.80)" fontWeight="bold" > Open existing project from files</Text>
     
 
 
@@ -211,7 +212,7 @@ function StartView(props) {
         </> 
         :
           <Button boxShadow='sm'
-          rounded = '2xl'
+          rounded = 'md'
           backgroundColor="#F0F0F1"
           alignItems="center"
           flexDir="column"
